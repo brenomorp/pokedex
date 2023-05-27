@@ -27,11 +27,11 @@ Este projeto é uma pokedex online que permite aos usuários ver informações s
 ## Layout web
 
 **Página principal**
-<img src='./pokedex/public/images/web1.jpg'></img>
+<img src='https://prnt.sc/1eXHKw1rrXK_'></img>
 **Pokedex**
-<img src='./pokedex/public/images/web2.jpg'></img>
+<img src='https://prnt.sc/izsbT27-FRKA'></img>
 **Detalhes do pokemon**
-<img src='./pokedex/public/images/web3.jpg'></img>
+<img src='https://prnt.sc/QIqx2fH9Y5IZ'></img>
 
 # Como rodar o projeto?
 
