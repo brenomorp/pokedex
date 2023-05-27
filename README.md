@@ -27,11 +27,11 @@ Este projeto é uma pokedex online que permite aos usuários ver informações s
 ## Layout web
 
 **Página principal**
-<img src='https://prnt.sc/1eXHKw1rrXK_'></img>
+![home](https://github.com/brenomorp/pokedex/assets/85278831/b85660c8-fd18-43f6-9c90-15dd8bb69404)
 **Pokedex**
-<img src='https://prnt.sc/izsbT27-FRKA'></img>
+![pokedex](https://github.com/brenomorp/pokedex/assets/85278831/c2756119-71b9-44cf-95a4-56979301e258)
 **Detalhes do pokemon**
-<img src='https://prnt.sc/QIqx2fH9Y5IZ'></img>
+![details](https://github.com/brenomorp/pokedex/assets/85278831/ea93614c-b79f-4cc1-9c92-e8e1dc03a613)
 
 # Como rodar o projeto?
 
