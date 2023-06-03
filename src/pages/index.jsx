@@ -20,7 +20,7 @@ export const getServerSideProps = async (context) => {
   const pokemonDataList = await Promise.all(
     pokemonList.map(async (pokemon) => {
       const pokemonResponse = await axios.get(pokemon.url);
-      const { name, id, types, sprites, moves } = pokemonResponse.data;
+      const { name, id, types, sprites } = pokemonResponse.data;
       return {
         name,
         id,
@@ -28,7 +28,6 @@ export const getServerSideProps = async (context) => {
         sprites: {
           official_artwork: sprites.other['official-artwork'].front_default,
         },
-        moves: moves.slice(0, 4).map((item) => item.move.name),
       };
     })
   );
