@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Poppins } from 'next/font/google';
 import logo from '../../public/images/logo.svg';
 import useGlobalContext from '@/hook/useGlobalContext';
+import HeaderButton from './HeaderButton';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -11,68 +12,42 @@ const poppins = Poppins({
 });
 
 function Header() {
-  const {
-    pageFlow,
-    isOnPokedex,
-    setIsOnPokedex,
-    pokedex,
-    setPokedex,
-    currentPokemon,
-  } = useGlobalContext();
+  const { pageFlow } = useGlobalContext();
 
   return (
     <header
-      className={`grid grid-cols-3 items-center px-20 py-5 bg-white ${poppins.variable} font-sans text-black`}
+      className={`flex items-center justify-between bg-white px-4 py-6 sm:grid sm:justify-start md:px-8 md:py-8 lg:px-11 lg:py-5 ${poppins.variable} grid-cols-2 font-sans text-black sm:grid-cols-3`}
     >
-      <div className="justify-self-start">
-        {pageFlow !== 1 && (
+      {pageFlow !== 1 && (
+        <div className="justify-self-start">
           <Link href="/">
             <span className="flex items-center justify-center gap-2">
-              <span className="border-t-2 border-l-2 border-black w-3 h-3 -rotate-45" />
-              <span className="text-2xl underline">Todos Pokémon</span>
+              <span className="h-3 w-3 -rotate-45 border-l-2 border-t-2 border-black" />
+              <span className="text-sm underline md:text-lg lg:text-2xl">
+                Todos Pokémon
+              </span>
             </span>
           </Link>
-        )}
-      </div>
-      <Link className="justify-self-center" href="/">
-        <Image src={logo} alt="logo" />
+        </div>
+      )}
+      <Link
+        className={`${
+          pageFlow === 3 ? 'hidden' : ''
+        } sm:col-start-2 sm:block sm:justify-self-center
+         md:text-lg`}
+        href="/"
+      >
+        <Image src={logo} alt="logo" className="h-12 sm:h-16 md:h-20 lg:h-28" />
       </Link>
-      <div className="justify-self-end">
+      <div className={`${pageFlow === 1 && 'col-start-3'} justify-self-end`}>
         {pageFlow === 1 ? (
           <Link href="/pokedex">
-            <div className="bg-button-blue px-28 py-5 rounded-md text-white text-2xl">
+            <div className="flex h-12 w-36 items-center justify-center rounded-md bg-button-blue text-sm text-white md:h-12 md:w-48 md:text-lg lg:h-20 lg:w-56 lg:text-2xl xl:w-72">
               Pokédex
             </div>
           </Link>
         ) : (
-          pageFlow === 3 &&
-          (!isOnPokedex ? (
-            <button
-              type="button"
-              className="bg-button-blue px-20 py-5 rounded-md text-white text-2xl"
-              onClick={() => {
-                setIsOnPokedex(true);
-                setPokedex([...pokedex, currentPokemon]);
-              }}
-            >
-              Capturar
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="bg-button-red px-20 py-5 rounded-md text-white text-2xl"
-              onClick={() => {
-                setIsOnPokedex(false);
-                setPokedex((prev) =>
-                  prev.filter(
-                    (item) => !pokedex.some((p) => p?.name === item?.name)
-                  )
-                );
-              }}
-            >
-              Excluir da Pokédex
-            </button>
-          ))
+          pageFlow === 3 && <HeaderButton />
         )}
       </div>
     </header>
