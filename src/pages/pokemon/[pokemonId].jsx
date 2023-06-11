@@ -51,7 +51,7 @@ export const getStaticProps = async (context) => {
       front_default: sprites.front_default,
       official_artwork: sprites.other['official-artwork'].front_default,
     },
-    moves: moves.slice(0, 4).map((move) => move.move.name),
+    moves: moves.slice(0, 12).map((move) => move.move.name),
   };
 
   return {
@@ -100,34 +100,36 @@ function PokemonDetails({ pokemon }) {
 
   return (
     <div
-      className={`py-16 px-10 max-w-screen-2xl mx-auto ${inter.className} overflow-hidden max-h-min`}
+      className={`mx-auto max-w-screen-2xl p-4 sm:p-8 md:px-10 md:py-12 lg:py-16 ${inter.className} max-h-min overflow-hidden`}
     >
       <Title text="Detalhes" />
       <div
         className={`${getColorVariant(
           pokemon.types[0]
-        )} flex gap-16 px-12 py-8 rounded-3xl bg-pokeball_full bg-no-repeat bg-contain bg-right-top relative max-h-min mt-10`}
+        )} relative mt-10 flex max-h-min flex-col-reverse gap-8 rounded-3xl bg-pokeball_full bg-contain bg-right-top bg-no-repeat px-6 py-8 md:px-12 md:py-8 lg:flex-row`}
       >
-        <div className="flex gap-12 flex-1">
-          <div className="flex flex-col flex-1 gap-12">
+        <div className="flex flex-1 flex-col-reverse justify-center gap-8 xl:flex-row">
+          <div className="flex w-full flex-1 flex-col items-center gap-8 lg:w-1/2 lg:flex-row xl:h-full xl:flex-col">
             <Image
-              className="bg-white rounded-xl"
+              className="w-full max-w-xs rounded-xl bg-white lg:h-full xl:h-fit"
               src={pokemon.sprites.front_default}
               width={250}
               height={250}
               alt={`${pokemon.name} front sprite`}
             />
             <Image
-              className="bg-white rounded-xl"
+              className="w-full max-w-xs rounded-xl bg-white lg:h-full xl:h-fit"
               src={pokemon.sprites.back_default}
               width={250}
               height={250}
               alt={`${pokemon.name} back sprite`}
             />
           </div>
-          <div className={`bg-white rounded-xl ${inter.className} flex-1 p-5`}>
-            <h3 className="text-black font-extrabold text-2xl">Base stats</h3>
-            <ul className="mt-6">
+          <div
+            className={`rounded-xl bg-white ${inter.className} w-full p-4 lg:h-fit xl:h-full xl:w-1/2`}
+          >
+            <h3 className="text-2xl font-extrabold text-black">Base stats</h3>
+            <ul className="mt-6 lg:grid lg:grid-cols-2 lg:flex-col xl:flex">
               {pokemon.stats.map((stat) => (
                 <StatContantainer
                   key={stat.name}
@@ -135,8 +137,8 @@ function PokemonDetails({ pokemon }) {
                   value={stat.base_stat}
                 />
               ))}
-              <li className="flex gap-3 py-3 border-y border-gray-500/20">
-                <div className="text-gray-500 text-right flex-[0_0_25%] whitespace-nowrap">
+              <li className="col-span-2 flex gap-3 border-y border-gray-500/20 py-3">
+                <div className="flex-[0_0_25%] whitespace-nowrap text-right text-gray-500">
                   Total
                 </div>
                 <div className="flex-[0_0_10%] text-right font-black">
@@ -146,13 +148,13 @@ function PokemonDetails({ pokemon }) {
             </ul>
           </div>
         </div>
-        <div className="flex flex-col justify-between flex-1">
+        <div className="flex flex-1 flex-col justify-between">
           <div>
-            <p className="text-base text-white font-bold">#{pokemon.id}</p>
-            <h2 className="text-5xl text-white font-bold capitalize">
+            <p className="text-base font-bold text-white">#{pokemon.id}</p>
+            <h2 className="text-2xl font-bold capitalize text-white sm:text-3xl md:text-4xl lg:text-5xl">
               {pokemon.name}
             </h2>
-            <div className="flex gap-4 mt-6">
+            <div className="mt-6 flex gap-4">
               {pokemon.types?.map((type) => (
                 <img
                   key={type}
@@ -162,25 +164,28 @@ function PokemonDetails({ pokemon }) {
               ))}
             </div>
           </div>
-          <div className="bg-white rounded-xl p-8 flex-1 mt-12 w-1/2">
-            <h3 className="text-black font-extrabold text-2xl">Moves</h3>
-            <ul>
+          <div className="mt-12 flex-1 rounded-xl bg-white p-8">
+            <h3 className="mb-4 text-2xl font-extrabold text-black xl:mb-12">
+              Moves
+            </h3>
+            <ul className="grid-flow-rows grid grid-cols-2 gap-4 md:grid-cols-3">
               {pokemon.moves.map((move) => (
                 <li
                   key={move}
-                  className={`${montserrant.className} bg-[#ececec] mt-4 rounded-xl border-dashed border-black/20 border p-3 capitalize font-normal text-sm text-black w-fit`}
+                  className={`${montserrant.className} w-full rounded-xl border border-dashed border-black/20 bg-[#ececec] p-3 text-sm font-normal capitalize text-black`}
                 >
                   {move.replace(/[^a-zA-Z ]/g, ' ')}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="absolute right-4 -top-36">
+          <div className="absolute -top-14 right-4 lg:-top-28">
             <Image
               src={pokemon.sprites.official_artwork}
-              width={300}
-              height={300}
+              width={256}
+              height={256}
               alt={`${pokemon.name} official artwork sprite`}
+              className="w-36 sm:w-44 lg:w-52 xl:w-64"
             />
           </div>
         </div>
