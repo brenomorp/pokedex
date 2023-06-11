@@ -77,25 +77,25 @@ export default function Home({ pokemonDataList, count }) {
     );
 
   return (
-    <div className="py-16 px-10 max-w-screen-2xl mx-auto">
-      <div className="flex justify-between  mb-32">
+    <div className="mx-auto max-w-screen-2xl px-10 py-16">
+      <div className="mb-32 flex flex-col items-center justify-center gap-8 lg:flex-row lg:justify-between">
         <Title text="Todos Pokémon" />
         <input
           type="search"
-          className={`h-12 w-1/2 rounded-xl outline-none p-4 text-2xl ${poppins.className}`}
+          className={`h-12 w-full max-w-2xl rounded-xl p-4 text-2xl outline-none lg:w-1/2 ${poppins.className}`}
           placeholder="Pesquisar por nome"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
       </div>
       {filteredPokemonList.length > 0 ? (
-        <div className="grid grid-cols-2 grid-flow-row gap-x-4 gap-y-16 xl:grid-cols-3">
+        <div className="grid grid-flow-row grid-cols-1 gap-x-4 gap-y-16 lg:grid-cols-2 xl:grid-cols-3">
           {filteredPokemonList.map((pokemon) => (
             <PokemonCard key={pokemon.name} pokemon={pokemon} />
           ))}
         </div>
       ) : (
-        <div className="flex justify-center align-center mt-20">
+        <div className="align-center mt-20 flex justify-center">
           <p className={`text-white ${poppins.className} text-3xl`}>
             Pokémon não encontrado! Verifique sua pokedex.
           </p>

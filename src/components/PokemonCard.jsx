@@ -27,16 +27,16 @@ function PokemonCard({ pokemon }) {
 
   return (
     <div
-      className={`w-full ${getColorVariant(
+      className={`mx-auto w-full min-w-fit max-w-lg ${getColorVariant(
         types[0]
-      )} bg-pokeball bg-no-repeat bg-right-top p-4 rounded-xl text-white ${
+      )} rounded-xl bg-pokeball bg-right-top bg-no-repeat p-4 text-white ${
         inter.className
-      } font-sans relative`}
+      } relative font-sans`}
     >
-      <div className="flex justify-between mb-12">
+      <div className="mb-12 flex justify-between">
         <div>
           <p>#{id}</p>
-          <h3 className="capitalize mb-4">{name}</h3>
+          <h3 className="mb-4 capitalize">{name}</h3>
           <div className="flex gap-3">
             {types?.map((type) => (
               // eslint-disable-next-line @next/next/no-img-element
@@ -48,7 +48,7 @@ function PokemonCard({ pokemon }) {
             ))}
           </div>
         </div>
-        <div className="absolute right-4 -top-16">
+        <div className="absolute -top-16 right-4">
           <Image
             loader={() => official_artwork}
             unoptimized
@@ -56,10 +56,11 @@ function PokemonCard({ pokemon }) {
             width={180}
             height={180}
             alt={name}
+            className="w-32 sm:w-40 md:w-[180px]"
           />
         </div>
       </div>
-      <div className="w-full flex justify-between items-center">
+      <div className="flex w-full items-center justify-between">
         <Link href={`/pokemon/${id}`}>
           <span className={`${poppins.className} font-bold underline`}>
             Detalhes
@@ -68,7 +69,7 @@ function PokemonCard({ pokemon }) {
         {pageFlow === 1 ? (
           <button
             type="button"
-            className={`bg-white px-10 py-2 text-black ${poppins.className} font-sans font-normal rounded-xl`}
+            className={`bg-white px-10 py-2 text-black ${poppins.className} rounded-xl font-sans font-normal`}
             onClick={() => setPokedex([...pokedex, pokemon])}
           >
             Capturar!
@@ -77,7 +78,7 @@ function PokemonCard({ pokemon }) {
           pageFlow === 2 && (
             <button
               type="button"
-              className={`bg-button-red px-10 py-2 text-white ${poppins.className} font-sans font-normal rounded-xl`}
+              className={`bg-button-red px-10 py-2 text-white ${poppins.className} rounded-xl font-sans font-normal`}
               onClick={() =>
                 setPokedex((prev) => prev.filter((item) => item !== pokemon))
               }
